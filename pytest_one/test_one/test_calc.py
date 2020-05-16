@@ -12,4 +12,4 @@ class TestCalc(unittest.TestCase):
         result = self.calc.add(1, 2)
         print(result)
         self.assertEqual(3, result)
-unittest.main()
+# unittest.main()
