@@ -43,11 +43,13 @@ def test_updatedepart():
     assert res.json()["errcode"] == 0
 
 def test_deletedepart():
+    # 删除添加的部门
     res = requests.get(f"https://qyapi.weixin.qq.com/cgi-bin/department/delete?access_token={test_token()}&id=2")
     print(res.json())
     assert res.json()["errcode"] == 0
 
 def test_getdepart():
+    # 查找现在用户下所有的部门
     res = requests.get(f"https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token={test_token()}")
     print(res.json())
     assert res.json()["department"][0]["name"] == '贰六Sir'
