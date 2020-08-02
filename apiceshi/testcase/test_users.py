@@ -7,11 +7,12 @@ import requests
 
 @pytest.fixture(scope="session")
 def test_token():
+    res = None
     # 获取通讯录的token
     corpid = "ww413f2cf98b9b9441"
     corpsecret ='9nxHyqU9fU2EEuwlwUHpv5eNrd7yJbggU7stGVexmlQ'
-    r = requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}')
-    return r.json()["access_token"]
+    res = requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}')
+    return res.json()["access_token"]
 
 def test_getuser(userid,test_token):
     # 根据userid查询这个成员
@@ -54,7 +55,7 @@ def test_add_date():
     # data = [(str(random.randint(0, 9999999)),
     #             "zhangsna",
     #             str(random.randint(13800000001,13800009999))) for x in range(10)]
-    data = [("six26" + str(x), "sange", "138%08d" % x) for x in range(20)]
+    data = [(吃 % x) for x in range(20)]
     return data
 
 @pytest.mark.parametrize("userid, name, mobile",test_add_date())
