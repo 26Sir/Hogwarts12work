@@ -51,9 +51,10 @@ def test_deleteuser(userid,test_token):
     return res.json()
     
 def test_add_date():
-    data = [(str(random.randint(0, 9999999)),
-                "zhangsna",
-                str(random.randint(13800000001,13800009999))) for x in range(10)]
+    # data = [(str(random.randint(0, 9999999)),
+    #             "zhangsna",
+    #             str(random.randint(13800000001,13800009999))) for x in range(10)]
+    data = [("six26" + str(x), "sange", "138%08d" % x) for x in range(20)]
     return data
 
 @pytest.mark.parametrize("userid, name, mobile",test_add_date())
@@ -64,7 +65,10 @@ def test_all(userid, name, mobile,test_token):
         assert "created" == test_adduser(userid,name,mobile,test_token)['errmsg']
     except AssertionError as e:
         if "mobile existed" in e.__str__():
+            # 如果手机号被使用了，找出使用手机号的userid，进行删除
             re_userid = re.findall(":(.*)'$",e.__str__())[0]
+            if re_userid.endswith("'") or re_userid.endswith('"'):
+                re_userid = re_userid[:-1]
             assert "deleted" == test_deleteuser(re_userid,test_token)['errmsg']
             assert 60111 == test_getuser(re_userid,test_token)['errcode']
             assert "created" == test_adduser(userid, name, mobile,test_token)['errmsg']
