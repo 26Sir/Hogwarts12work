@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pytest
-from pytest_one.calc_one.calc import Calc
+from pyone.pytest_one.calc_one.calc import Calc
 
 
 class TestCalc:
