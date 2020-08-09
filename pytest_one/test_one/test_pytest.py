@@ -17,6 +17,7 @@ class TestCalc:
     def test_div(self):
         # self.calc = Calc()
         result_1 = self.calc.div(2,2)
+        print(result_1)
         assert 1 == result_1
         
 if __name__=='__main__':
